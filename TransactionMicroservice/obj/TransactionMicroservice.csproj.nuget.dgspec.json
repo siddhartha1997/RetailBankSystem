@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Deva\\Downloads\\TransactionMicroservice\\TransactionMicroservice\\TransactionMicroservice.csproj": {}
+    "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccFol\\TransactionMicroservice\\TransactionMicroservice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Deva\\Downloads\\TransactionMicroservice\\TransactionMicroservice\\TransactionMicroservice.csproj": {
+    "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccFol\\TransactionMicroservice\\TransactionMicroservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Deva\\Downloads\\TransactionMicroservice\\TransactionMicroservice\\TransactionMicroservice.csproj",
+        "projectUniqueName": "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccFol\\TransactionMicroservice\\TransactionMicroservice.csproj",
         "projectName": "TransactionMicroservice",
-        "projectPath": "C:\\Users\\Deva\\Downloads\\TransactionMicroservice\\TransactionMicroservice\\TransactionMicroservice.csproj",
-        "packagesPath": "C:\\Users\\Deva\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Deva\\Downloads\\TransactionMicroservice\\TransactionMicroservice\\obj\\",
+        "projectPath": "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccFol\\TransactionMicroservice\\TransactionMicroservice.csproj",
+        "packagesPath": "C:\\Users\\Shruti Kumari\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccFol\\TransactionMicroservice\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Deva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Shruti Kumari\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -45,6 +45,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[12.0.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
             }
           },
           "imports": [
@@ -65,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

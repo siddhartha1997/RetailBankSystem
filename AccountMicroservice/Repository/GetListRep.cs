@@ -24,14 +24,14 @@ namespace AccountMicroservice.Repository
             return accountStatements;
         }
 
-        public List<CurrentAccount> GetCurrentAccountsList()
+    /*    public List<CurrentAccount> GetCurrentAccountsList()
         {
             List<CurrentAccount> currentAccounts = new List<CurrentAccount>()
             {
                 new CurrentAccount{CAId=101,CBal=1000}
             };
             return currentAccounts;
-        }
+        }*/
 
         public List<customeraccount> GetCustomeraccountsList()
         {
@@ -42,7 +42,7 @@ namespace AccountMicroservice.Repository
             return customeraccounts;
         }
 
-        public List<SavingsAccount> GetSavingsAccountsList()
+      /*  public List<SavingsAccount> GetSavingsAccountsList()
         {
             List<SavingsAccount> savingsAccounts = new List<SavingsAccount>()
             {
@@ -50,7 +50,7 @@ namespace AccountMicroservice.Repository
             };
             return savingsAccounts;
         }
-
+      */
         /*public List<Statement> GetStatementsList()
         {
             throw new NotImplementedException();

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\AuthenticateMicroservices\\AuthenticateMicroservices.csproj": {}
+    "C:\\Users\\user\\source\\repos\\AuthenticateMicroservices\\AuthenticateMicroservices.csproj": {}
   },
   "projects": {
-    "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\AuthenticateMicroservices\\AuthenticateMicroservices.csproj": {
+    "C:\\Users\\user\\source\\repos\\AuthenticateMicroservices\\AuthenticateMicroservices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\AuthenticateMicroservices\\AuthenticateMicroservices.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\AuthenticateMicroservices\\AuthenticateMicroservices.csproj",
         "projectName": "AuthenticateMicroservices",
-        "projectPath": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\AuthenticateMicroservices\\AuthenticateMicroservices.csproj",
+        "projectPath": "C:\\Users\\user\\source\\repos\\AuthenticateMicroservices\\AuthenticateMicroservices.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\AuthenticateMicroservices\\obj\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\AuthenticateMicroservices\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",

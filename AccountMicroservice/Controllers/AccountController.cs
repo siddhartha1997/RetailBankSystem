@@ -34,7 +34,7 @@ namespace AccountMicroservice.Controllers
         /*public static List<customeraccount> customeraccounts = new List<customeraccount>()
         {
             new customeraccount{custId=1,CAId=101,SAId=102}
-        };
+        };*/
         public static List<CurrentAccount> currentAccounts = new List<CurrentAccount>()
         {
             new CurrentAccount{CAId=101,CBal=1000}
@@ -42,7 +42,7 @@ namespace AccountMicroservice.Controllers
         public static List<SavingsAccount> savingsAccounts = new List<SavingsAccount>()
         {
             new SavingsAccount{SAId=102,SBal=500}
-        };*/
+        };
         // GET: api/<AccountController>
         /*[HttpGet]
         public IEnumerable<customeraccount> Get()
@@ -57,8 +57,7 @@ namespace AccountMicroservice.Controllers
         {
             GetListRep ob = new GetListRep();
             var customeraccounts = ob.GetCustomeraccountsList();
-            var currentAccounts = ob.GetCurrentAccountsList();
-            var savingsAccounts = ob.GetSavingsAccountsList();
+           
             _log4net.Info(" Got Customer Account");
             var a = customeraccounts.Find(c => c.custId == id);
             var ca = currentAccounts.Find(cac => cac.CAId == a.CAId);
@@ -73,8 +72,7 @@ namespace AccountMicroservice.Controllers
         {
             GetListRep ob = new GetListRep();
             var customeraccounts = ob.GetCustomeraccountsList();
-            var currentAccounts = ob.GetCurrentAccountsList();
-            var savingsAccounts = ob.GetSavingsAccountsList();
+          
             _log4net.Info("Account Created");
             customeraccount a = new customeraccount
             {
@@ -102,16 +100,17 @@ namespace AccountMicroservice.Controllers
         {
             GetListRep ob = new GetListRep();
             var customeraccounts = ob.GetCustomeraccountsList();
-            var currentAccounts = ob.GetCurrentAccountsList();
-            var savingsAccounts = ob.GetSavingsAccountsList();
+          
             _log4net.Info(" Getting Account Info");
-            if (id%2!=0)
+            if (id % 2 != 0)
             {
                 var ca = currentAccounts.Find(a => a.CAId == id);
-                return "Current Account(" + ca.CAId + "):: Rs." + ca.CBal+".00";
+                return "Current Account(" + ca.CAId + "):: Rs." + ca.CBal + ".00";
             }
-            var sa = savingsAccounts.Find(a => a.SAId == id);
-            return "Savings Account(" + sa.SAId + "):: Rs." + sa.SBal+".00";
+            
+                var sa = savingsAccounts.Find(a => a.SAId == id);
+                return "Savings Account(" + sa.SAId + "):: Rs." + sa.SBal + ".00";
+            
         }
         [HttpGet]
         [Route("getAccountStatement/{AccountId}/{from_date}/{to_date}")]
@@ -149,8 +148,7 @@ namespace AccountMicroservice.Controllers
         {
             GetListRep ob = new GetListRep();
             var customeraccounts = ob.GetCustomeraccountsList();
-            var currentAccounts = ob.GetCurrentAccountsList();
-            var savingsAccounts = ob.GetSavingsAccountsList();
+           
             string data = JsonConvert.SerializeObject(value);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
 
@@ -181,8 +179,7 @@ namespace AccountMicroservice.Controllers
         {
             GetListRep ob = new GetListRep();
             var customeraccounts = ob.GetCustomeraccountsList();
-            var currentAccounts = ob.GetCurrentAccountsList();
-            var savingsAccounts = ob.GetSavingsAccountsList();
+        
             string data = JsonConvert.SerializeObject(value);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
 
@@ -191,7 +188,7 @@ namespace AccountMicroservice.Controllers
             {
                 _log4net.Info("Amount Withdrawn");
                 string data1 = response.Content.ReadAsStringAsync().Result;
-                if (data1 == "Transaction Success")
+                if (data1 == "No deduction")
                 {
                     if (value.AccountId % 2 == 0)
                     {
@@ -199,11 +196,23 @@ namespace AccountMicroservice.Controllers
                         sa.SBal = sa.SBal - value.Balance;
                         return "Withdrawn Successfully.New Balance Rs." + sa.SBal + ".00";
                     }
-                    var ca = currentAccounts.Find(a => a.CAId == value.AccountId);
-                    ca.CBal = ca.CBal - value.Balance;
-                    return "Withdrawn Successfully.New Balance Rs."+ca.CBal+".00";
+                  
+                       /* var ca = currentAccounts.Find(a => a.CAId == value.AccountId);
+                        ca.CBal = ca.CBal - value.Balance;
+                        return "Withdrawn Successfully.New Balance Rs." + ca.CBal + ".00";*/
+                    
                 }
-                return "Withdrawn Failed";
+                if (value.AccountId % 2 == 0)
+                {
+                    var sa = savingsAccounts.Find(a => a.SAId == value.AccountId);
+                    sa.SBal = sa.SBal - value.Balance-100;
+                    return "Withdrawn Successfully.New Balance Rs." + sa.SBal + ".00";
+                }
+                var ca = currentAccounts.Find(a => a.CAId == value.AccountId);
+                ca.CBal = ca.CBal - value.Balance-100;
+                return "Withdrawn Successfully.New Balance Rs." + ca.CBal + ".00";
+
+                
             }
             return "Link Failure";
         }
@@ -214,8 +223,8 @@ namespace AccountMicroservice.Controllers
         {
             GetListRep ob = new GetListRep();
             var customeraccounts = ob.GetCustomeraccountsList();
-            var currentAccounts = ob.GetCurrentAccountsList();
-            var savingsAccounts = ob.GetSavingsAccountsList();
+        //    var currentAccounts = ob.GetCurrentAccountsList();
+          //  var savingsAccounts = ob.GetSavingsAccountsList();
             double sb = 0.0, db = 0.0;
             string data = JsonConvert.SerializeObject(value);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
@@ -225,7 +234,7 @@ namespace AccountMicroservice.Controllers
             {
                 _log4net.Info("Amount Transferred");
                 string data1 = response.Content.ReadAsStringAsync().Result;
-                if (data1 == "Transaction Success")
+                if (data1 == "No deduction")
                 {
                     if (value.source_accid % 2 == 0)
                     {
@@ -253,7 +262,36 @@ namespace AccountMicroservice.Controllers
                     }
                     return "Sender Account Balance Rs." + sb + ".00\n" + "Receiver Account Balance Rs." + db + ".00";
                 }
-                return "Transfer Failure.Check minimum balance in account";
+                else
+                {
+                    if (value.source_accid % 2 == 0)
+                    {
+                        var sas = savingsAccounts.Find(a => a.SAId == value.source_accid);
+                        sas.SBal = sas.SBal - value.amount-100;
+                        sb = sas.SBal;
+                    }
+                    else
+                    {
+                        var cas = currentAccounts.Find(a => a.CAId == value.source_accid);
+                        cas.CBal = cas.CBal - value.amount-100;
+                        sb = cas.CBal;
+                    }
+                    if (value.destination_accid % 2 == 0)
+                    {
+                        var sa = savingsAccounts.Find(a => a.SAId == value.destination_accid);
+                        sa.SBal = sa.SBal + value.amount;
+                        db = sa.SBal;
+                    }
+                    else
+                    {
+                        var ca = currentAccounts.Find(a => a.CAId == value.destination_accid);
+                        ca.CBal = ca.CBal + value.amount;
+                        db = ca.CBal;
+                    }
+                    return "Sender Account Balance Rs." + sb + ".00\n" + "Receiver Account Balance Rs." + db + ".00";
+
+                }
+                
             }
             return "Link Failure";
         }

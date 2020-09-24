@@ -9,8 +9,8 @@ namespace AccountMicroservice.Repository
     interface IGetListRep
     {
         public List<customeraccount> GetCustomeraccountsList();
-        public List<CurrentAccount> GetCurrentAccountsList();
-        public List<SavingsAccount> GetSavingsAccountsList();
+      /*  public List<CurrentAccount> GetCurrentAccountsList();
+        public List<SavingsAccount> GetSavingsAccountsList();*/
         public List<AccountStatement> GetAccountStatementsList();
         //public List<Statement> GetStatementsList();
     }

@@ -32,7 +32,7 @@ namespace RulesMicroservice.Controllers
         // GET api/<RulesController>/5
         [HttpPost]
         [Route("evaluateMinBal")]
-        public float evaluateMinBal([FromBody] Account value)
+        public string evaluateMinBal([FromBody] Account value)
         {
             Account account = accountList.Find(a => a.AccountId == value.AccountId);
             _log4net.Info("Evaluating Minimum Balance");
@@ -40,34 +40,18 @@ namespace RulesMicroservice.Controllers
             account.Balance = account.Balance - value.Balance;
             if (account.Balance < 500)
             {
-                return 100.05F;
+                return "Deduct";
             }
-            return 0.0F;
+            return "No deduction";
         }
         [HttpGet]
         [Route("getServiceCharges")]
-        public float getServiceCharges()
+        public int getServiceCharges()
         {
-            _log4net.Info("Service Charges");
-            return 100.05F;
+            _log4net.Info("Service Charges logged");
+            return 100;
         }
 
-        // POST api/<RulesController>
-       /* [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<RulesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<RulesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }*/
+    
     }
 }

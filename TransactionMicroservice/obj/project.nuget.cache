@@ -1,11 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "WoJ2C4EldjgtLrxF3eyOWQ6wYukhDu1Oa29ZvwVHEsqZcMt5/MZylBPvp55Dq0k1xJVDtKO6vVsemFVNucwzcA==",
+  "dgSpecHash": "/8RkNV3IpHFZUVSdKQkZVLNJP3zWaTwNiN2NbZqdfjj3v10PPbL9yVDxU+ILVTq+jojW7ppLezShROPa3+L2RA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Deva\\Downloads\\TransactionMicroservice\\TransactionMicroservice\\TransactionMicroservice.csproj",
+  "projectFilePath": "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccFol\\TransactionMicroservice\\TransactionMicroservice.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Deva\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512",
-    "C:\\Users\\Deva\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+    "C:\\Users\\Shruti Kumari\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Shruti Kumari\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Shruti Kumari\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512",
+    "C:\\Users\\Shruti Kumari\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Shruti Kumari\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\Shruti Kumari\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\Shruti Kumari\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\Shruti Kumari\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
   ],
   "logs": []
 }

@@ -2803,19 +2803,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\Shruti Kumari\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\CustomerMicroservice\\CustomerMicroservice.csproj",
+      "projectUniqueName": "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccFol\\CustomerMicroservice\\CustomerMicroservice.csproj",
       "projectName": "CustomerMicroservice",
-      "projectPath": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\CustomerMicroservice\\CustomerMicroservice.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\CustomerMicroservice\\obj\\",
+      "projectPath": "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccFol\\CustomerMicroservice\\CustomerMicroservice.csproj",
+      "packagesPath": "C:\\Users\\Shruti Kumari\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccFol\\CustomerMicroservice\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Shruti Kumari\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2882,7 +2882,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

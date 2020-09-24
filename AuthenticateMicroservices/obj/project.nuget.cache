@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8WmN8D2iK3spNdgXkug+OYX4lRuMj0w98DM8agMV7rIFjZVet5yX2i8jslm/c2Ny2Pdl0dfFzYdsF/pWoNuGZg==",
+  "dgSpecHash": "RCc/K2XBZWpYT146aP3PsPWe0kCEoDRxFcP2K9oeIE7g2BeofFBXJT9jjVNzd9BrjRo96yreZVVqQc2p6KHhhQ==",
   "success": true,
-  "projectFilePath": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\AuthenticateMicroservices\\AuthenticateMicroservices.csproj",
+  "projectFilePath": "C:\\Users\\user\\source\\repos\\AuthenticateMicroservices\\AuthenticateMicroservices.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\log4net\\2.0.10\\log4net.2.0.10.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.8\\microsoft.aspnetcore.authentication.jwtbearer.3.1.8.nupkg.sha512",
