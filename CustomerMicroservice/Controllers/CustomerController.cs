@@ -78,7 +78,7 @@ namespace CustomerMicroservice.Controllers
         public string getCustomerAccounts(int id)
         {
             _log4net.Info("Customer Account is fetched");
-            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Account/getCustomerDetails/" + id).Result;
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Account/getCustomerAccounts/" + id).Result;
             if (response.IsSuccessStatusCode)
             {
                 return response.Content.ReadAsStringAsync().Result;

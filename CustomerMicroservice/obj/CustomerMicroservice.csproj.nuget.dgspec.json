@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\CustomerMicroservice\\CustomerMicroservice.csproj": {}
+    "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\CustomerMicroservice\\CustomerMicroservice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\CustomerMicroservice\\CustomerMicroservice.csproj": {
+    "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\CustomerMicroservice\\CustomerMicroservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\CustomerMicroservice\\CustomerMicroservice.csproj",
+        "projectUniqueName": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\CustomerMicroservice\\CustomerMicroservice.csproj",
         "projectName": "CustomerMicroservice",
-        "projectPath": "C:\\Users\\user\\source\\repos\\CustomerMicroservice\\CustomerMicroservice.csproj",
+        "projectPath": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\CustomerMicroservice\\CustomerMicroservice.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\CustomerMicroservice\\obj\\",
+        "outputPath": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\CustomerMicroservice\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
