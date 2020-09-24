@@ -9,6 +9,7 @@ using AuthenticateMicroservices.Model;
 using AuthenticateMicroservices.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace AuthenticateMicroservices.Controllers
@@ -22,36 +23,37 @@ namespace AuthenticateMicroservices.Controllers
             new User{UserId=1,Password="1234",Roles="Employee"},
             new User{UserId=2,Password="12345",Roles="Customer"}
         };*/
+        private IConfiguration _config;
         readonly log4net.ILog _log4net;
-        public TokenController()
+        public TokenController(IConfiguration config)
         {
+            _config = config;
             _log4net = log4net.LogManager.GetLogger(typeof(TokenController));
         }
         [HttpPost]
         public IActionResult Post([FromBody] User u)
         {
             _log4net.Info("Login method generated");
-            UserListRep uL = new UserListRep();
-            var userList = uL.getUserList();
-            foreach (var v in userList)
+            IActionResult response = Unauthorized();
+            var au = AuthenticateUser(u);
+            /*UserListRep uL = new UserListRep();
+            var userList = uL.getUserList();*/
+            /*foreach (var v in userList)
             {
                 if (u.UserId ==  v.UserId && u.Password == v.Password)
-                {
-                    string role = "";
-                    if (u.Roles == "Employee")
-                        role = "Employee";
-                    else
-                        role = "Customer";
-                    var result = new
-                    {
-                        token = GenerateJSONWebToken(u.UserId, role)
-                    };
-                    _log4net.Info("Token Generated");
-                    return Ok(result);
-                }
+                {*/
+            if (au != null)
+            {
+                string role = "";
+                if (au.Roles == "Employee")
+                    role = "Employee";
+                else
+                    role = "Customer";
+                string tokenString = GenerateJSONWebToken(au.UserId, role);
+                response = Ok(new { token = tokenString });
+                _log4net.Info("Token Generated");
             }
-            _log4net.Info("Token Denied");
-            return BadRequest();
+            return response;
         }
         private string GenerateJSONWebToken(int userId, string userRole)
         {
@@ -83,6 +85,20 @@ namespace AuthenticateMicroservices.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
 
+        }
+        public User AuthenticateUser(User login)
+        {
+            User user = null;
+            UserListRep uL = new UserListRep();
+            var userList = uL.getUserList();
+            foreach (var v in userList)
+            {
+                if (login.UserId == v.UserId && login.Password == v.Password)
+                {
+                    user = new User { UserId = login.UserId, Password = login.Password, Roles = login.Roles };
+                }
+            }
+            return user;
         }
     }
 }

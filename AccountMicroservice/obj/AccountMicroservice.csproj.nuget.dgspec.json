@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccountMicroservice\\AccountMicroservice.csproj": {}
+    "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\AccountMicroservice\\AccountMicroservice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccountMicroservice\\AccountMicroservice.csproj": {
+    "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\AccountMicroservice\\AccountMicroservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccountMicroservice\\AccountMicroservice.csproj",
+        "projectUniqueName": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\AccountMicroservice\\AccountMicroservice.csproj",
         "projectName": "AccountMicroservice",
-        "projectPath": "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccountMicroservice\\AccountMicroservice.csproj",
-        "packagesPath": "C:\\Users\\Shruti Kumari\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Shruti Kumari\\Desktop\\MyProject\\AccountMicroservice\\obj\\",
+        "projectPath": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\AccountMicroservice\\AccountMicroservice.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "E:\\FinalProject\\MyProject\\Siddhartha-CustomerMicroservice\\AccountMicroservice\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Shruti Kumari\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -81,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
