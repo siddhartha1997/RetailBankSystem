@@ -16,7 +16,6 @@ namespace TransactionMicroservice.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(TransactionController));
         Uri baseAddress = new Uri("https://localhost:44356/api");   //Port No.
         HttpClient client;
 
@@ -27,41 +26,40 @@ namespace TransactionMicroservice.Controllers
 
         }
         // GET: api/<TransactionController>
-     /*   [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        /* [HttpGet]
+         public IEnumerable<string> Get()
+         {
+             return new string[] { "value1", "value2" };
+         }
 
-        // GET api/<TransactionController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+         // GET api/<TransactionController>/5
+         [HttpGet("{id}")]
+         public string Get(int id)
+         {
+             return "value";
+         }
 
-        // POST api/<TransactionController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+         // POST api/<TransactionController>
+         [HttpPost]
+         public void Post([FromBody] string value)
+         {
+         }
 
-        // PUT api/<TransactionController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+         // PUT api/<TransactionController>/5
+         [HttpPut("{id}")]
+         public void Put(int id, [FromBody] string value)
+         {
+         }
 
-        // DELETE api/<TransactionController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }*/
+         // DELETE api/<TransactionController>/5
+         [HttpDelete("{id}")]
+         public void Delete(int id)
+         {
+         }*/
         [HttpPost]
         [Route("deposit")]
         public string deposit([FromBody] dwacc value)
         {
-            _log4net.Info("Deposited Money");
             return "Success";
         }
         [HttpPost]
@@ -70,25 +68,19 @@ namespace TransactionMicroservice.Controllers
         {
             string data = JsonConvert.SerializeObject(value);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-            _log4net.Info("Withdrawal");
 
             HttpResponseMessage response = client.PostAsync(client.BaseAddress + "/Rules/evaluateMinBal/", content).Result;
             if (response.IsSuccessStatusCode)
             {
-                
                 string data1 = response.Content.ReadAsStringAsync().Result;
-                if (data1 == "Allowed")
-                    return "Transaction Success";
-                return "Transaction Failed";
+                return data1;
             }
-            
             return "Link Failure";
         }
         [HttpPost]
         [Route("transfer")]
         public string transfer([FromBody] transfers value)
         {
-            _log4net.Info("Transfer");
             dwacc sa = new dwacc
             {
                 AccountId = value.source_accid,
@@ -96,17 +88,13 @@ namespace TransactionMicroservice.Controllers
             };
             string data = JsonConvert.SerializeObject(sa);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-            
+
             HttpResponseMessage response = client.PostAsync(client.BaseAddress + "/Rules/evaluateMinBal/", content).Result;
             if (response.IsSuccessStatusCode)
             {
-                
                 string data1 = response.Content.ReadAsStringAsync().Result;
-                if (data1 == "Allowed")
-                    return "Transaction Success";
-                return "Transaction Failed";
+                return data1;
             }
-            
             return "Link Failure";
         }
     }
