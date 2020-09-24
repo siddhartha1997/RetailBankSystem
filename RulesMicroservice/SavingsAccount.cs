@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace RulesMicroservice
 {
-    public class Account
+    public class SavingsAccount
     {
-        public int AccountId { get; set; }
-        public float Balance { get; set; }
+        public int SAId { get; set; }
+        public double SBal { get; set; }
     }
 }

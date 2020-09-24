@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,37 +13,75 @@ namespace RulesMicroservice.Controllers
     public class RulesController : ControllerBase
     {
         static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(RulesController));
-       
-        public static List<Account> accountList = new List<Account>
+
+        Uri baseAddress = new Uri("https://localhost:44379/api");   //Port No.
+        HttpClient client;
+
+      
+
+        public RulesController()
         {
-            new Account{AccountId=101,Balance=1000},
-            new Account{AccountId=102,Balance=400}
-        };
-        private object _log4;
+            client = new HttpClient();
+            client.BaseAddress = baseAddress;
+           
+        }
 
         // GET: api/<RulesController>
-        [HttpGet]
+    /*    [HttpGet]
         public IEnumerable<Account> Get()
         {
             _log4net.Info("Account List Obtained");
             return accountList;
-        }
+        }*/
 
         // GET api/<RulesController>/5
         [HttpPost]
-        [Route("evaluateMinBal")]
-        public string evaluateMinBal([FromBody] Account value)
+        [Route("evaluateMinBalCurrent")]
+        public List<CurrentAccount> evaluateMinBal([FromBody] CurrentAccount value)
         {
-            Account account = accountList.Find(a => a.AccountId == value.AccountId);
-            _log4net.Info("Evaluating Minimum Balance");
+            List<CurrentAccount> ls = new List<CurrentAccount>();
 
-            account.Balance = account.Balance - value.Balance;
-            if (account.Balance < 500)
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Account/getCurrentAccountList").Result;
+            if (response.IsSuccessStatusCode)
             {
-                return "Deduct";
+                string data = response.Content.ReadAsStringAsync().Result;
+                ls = JsonConvert.DeserializeObject<List<CurrentAccount>>(data);
             }
-            return "No deduction";
+            
+            if (true)
+            {
+                return ls;
+            }
         }
+
+
+
+
+        [HttpPost]
+        [Route("evaluateMinBalSavings")]
+        public List<SavingsAccount> evaluateMinBal([FromBody] SavingsAccount value)
+        {
+            List<SavingsAccount> ls1 = new List<SavingsAccount>();
+
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/Account/getSavingsAccountList").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                ls1 = JsonConvert.DeserializeObject<List<SavingsAccount>>(data);
+            }
+
+
+
+
+            if (true)
+            {
+                return ls1;
+            }
+
+        }
+
+
+
         [HttpGet]
         [Route("getServiceCharges")]
         public int getServiceCharges()

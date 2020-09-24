@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -44,11 +45,19 @@ namespace AccountMicroservice.Controllers
             new SavingsAccount{SAId=102,SBal=500}
         };
         // GET: api/<AccountController>
-        /*[HttpGet]
-        public IEnumerable<customeraccount> Get()
+        [HttpGet]
+        [Route("getCurrentAccountList")]
+        public IActionResult GetCurrent()
         {
-            return customeraccounts;
-        }*/
+            return Ok(currentAccounts);
+        }
+
+        [HttpGet]
+        [Route("getSavingAccountList")]
+        public IActionResult GetSavings()
+        {
+            return Ok(savingsAccounts);
+        }
 
         // GET api/<AccountController>/5
         [HttpGet]
@@ -188,29 +197,55 @@ namespace AccountMicroservice.Controllers
             {
                 _log4net.Info("Amount Withdrawn");
                 string data1 = response.Content.ReadAsStringAsync().Result;
-                if (data1 == "No deduction")
+                if (data1 == "No Warning")
                 {
                     if (value.AccountId % 2 == 0)
                     {
                         var sa = savingsAccounts.Find(a => a.SAId == value.AccountId);
                         sa.SBal = sa.SBal - value.Balance;
-                        return "Withdrawn Successfully.New Balance Rs." + sa.SBal + ".00";
+                        if (sa.SBal >= 0)
+                            return "Withdrawn Successfully.New Balance Rs." + sa.SBal + ".00";
+                        else
+                        {
+                            sa.SBal = sa.SBal + value.Balance;
+                            return "Insufficient Fund";
+                        }
+                            
                     }
                   
-                       /* var ca = currentAccounts.Find(a => a.CAId == value.AccountId);
-                        ca.CBal = ca.CBal - value.Balance;
-                        return "Withdrawn Successfully.New Balance Rs." + ca.CBal + ".00";*/
+                      var car = currentAccounts.Find(a => a.CAId == value.AccountId);
+                        car.CBal = car.CBal - value.Balance;
+                    if (car.CBal >= 0)
+                        return "Withdrawn Successfully.New Balance Rs." + car.CBal + ".00";
+                    else
+                    {
+                        car.CBal = car.CBal + value.Balance; 
+                        return "Insufficient Fund";
+                    }
                     
                 }
                 if (value.AccountId % 2 == 0)
                 {
                     var sa = savingsAccounts.Find(a => a.SAId == value.AccountId);
-                    sa.SBal = sa.SBal - value.Balance-100;
-                    return "Withdrawn Successfully.New Balance Rs." + sa.SBal + ".00";
+                    sa.SBal = sa.SBal - value.Balance;
+                    if (sa.SBal >= 0)
+                        return "Withdrawn Successfully.New Balance Rs." + sa.SBal + ".00 but service charge will be deducted at the end of month";
+                    else
+                    {
+                        sa.SBal = sa.SBal + value.Balance;
+                        return "Insufficient Fund";
+                    }
                 }
                 var ca = currentAccounts.Find(a => a.CAId == value.AccountId);
-                ca.CBal = ca.CBal - value.Balance-100;
-                return "Withdrawn Successfully.New Balance Rs." + ca.CBal + ".00";
+                ca.CBal = ca.CBal - value.Balance;
+                if (ca.CBal >= 0)
+                    return "Withdrawn Successfully.New Balance Rs." + ca.CBal + ".00 but service charge will be deducted at the end of month";
+                else
+                {
+                    ca.CBal = ca.CBal + value.Balance;
+                    return "Insufficient Fund";
+                }
+                    
 
                 
             }
@@ -234,19 +269,32 @@ namespace AccountMicroservice.Controllers
             {
                 _log4net.Info("Amount Transferred");
                 string data1 = response.Content.ReadAsStringAsync().Result;
-                if (data1 == "No deduction")
+                if (data1 == "No Warning")
                 {
                     if (value.source_accid % 2 == 0)
                     {
                         var sas = savingsAccounts.Find(a => a.SAId == value.source_accid);
                         sas.SBal = sas.SBal - value.amount;
-                        sb = sas.SBal;
+                        if (sas.SBal >= 0)
+                            sb = sas.SBal;
+                        else
+                        {
+                            sas.SBal = sas.SBal + value.amount;
+                            return "Insufficient Fund";
+                        }
                     }
                     else
                     {
                         var cas = currentAccounts.Find(a => a.CAId == value.source_accid);
                         cas.CBal = cas.CBal - value.amount;
-                        sb = cas.CBal;
+                        if (cas.CBal >= 0)
+                            sb = cas.CBal;
+                        else
+                        {
+                            cas.CBal = cas.CBal + value.amount;
+                            return "Insufficient Fund";
+                        }
+                            
                     }
                     if (value.destination_accid % 2 == 0)
                     {
@@ -267,14 +315,28 @@ namespace AccountMicroservice.Controllers
                     if (value.source_accid % 2 == 0)
                     {
                         var sas = savingsAccounts.Find(a => a.SAId == value.source_accid);
-                        sas.SBal = sas.SBal - value.amount-100;
-                        sb = sas.SBal;
+                        sas.SBal = sas.SBal - value.amount;
+                        if (sas.SBal >= 0)
+                            sb = sas.SBal;
+                        else
+                        {
+                            sas.SBal = sas.SBal + value.amount;
+                            return "Insufficient Fund";
+                        }
+                            
                     }
                     else
                     {
                         var cas = currentAccounts.Find(a => a.CAId == value.source_accid);
-                        cas.CBal = cas.CBal - value.amount-100;
-                        sb = cas.CBal;
+                        cas.CBal = cas.CBal - value.amount;
+                        if (cas.CBal >= 0)
+                            sb = cas.CBal;
+                        else
+                        {
+                            cas.CBal = cas.CBal + value.amount;
+                            return "Insufficient Fund";
+                        }
+                           
                     }
                     if (value.destination_accid % 2 == 0)
                     {
@@ -288,7 +350,7 @@ namespace AccountMicroservice.Controllers
                         ca.CBal = ca.CBal + value.amount;
                         db = ca.CBal;
                     }
-                    return "Sender Account Balance Rs." + sb + ".00\n" + "Receiver Account Balance Rs." + db + ".00";
+                    return "Sender Account Balance Rs." + sb + ".00\n" + "Receiver Account Balance Rs." + db + ".00\n but service charge will be deducted at the end of month from your account";
 
                 }
                 

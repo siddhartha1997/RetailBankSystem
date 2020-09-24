@@ -73,11 +73,11 @@ namespace TransactionMicroservice.Controllers
             if (response.IsSuccessStatusCode)
             {
                 string data1 = response.Content.ReadAsStringAsync().Result;
-                if (data1 == "Deduct")
+                if (data1 == "Warning")
                 {
-                    return "Deduction";
+                    return "Warning";
                 }
-                return "No Deduction";
+                return "No Warning";
             }
             return "Link Failure";
         }
@@ -97,11 +97,11 @@ namespace TransactionMicroservice.Controllers
             if (response.IsSuccessStatusCode)
             {
                 string data1 = response.Content.ReadAsStringAsync().Result;
-                if(data1=="Deduct")
+                if(data1=="Warning")
                 {
-                    return "Deduction";
+                    return "Warning";
                 }
-                return "No Deduction";
+                return "No Warning";
             }
             return "Link Failure";
         }
