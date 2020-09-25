@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace CustomerMicroservice.Repository
 {
-    interface ICustomerRep
+    public interface ICustomerRep
     {
-        public List<Customer> getCustomerList(); 
+        public CustomerCreationStatus createCustomer(Customer customer);
+        public Customer getCustomerDetails(int CustId);
     }
 }
